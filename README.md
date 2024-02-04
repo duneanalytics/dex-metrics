@@ -1,18 +1,22 @@
 # Dune Query Repo
 
-A template for creating repos to manage your Dune queries (using the [Dune CRUD API](https://dune.mintlify.app/api-reference/crud/endpoint/create)). The main flow I've created this template for is to turn any dashboard you own into a repository of queries. But you can extend it however you want.
+A template for creating repos to [manage your Dune queries](https://dune.mintlify.app/api-reference/crud/endpoint/create) and any [CSVs as Dune tables](https://dune.mintlify.app/api-reference/upload/endpoint/upload). The main flow I've created this template for is to turn any dashboard you own into a repository of queries. But you can extend it however you want.
 
 ### Setup Your Repo
 
-1. Generate an API key from your Dune account and put that in both your `.env` file and [github action secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository) (name it `DUNE_API_KEY`). You can create a key under your Dune team settings. *The key must be from a premium plan for this repo to work.*
+1. Generate an API key from your Dune account and put that in both your `.env` file and [github action secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository) (name it `DUNE_API_KEY`). You can create a key under your Dune team settings. Add `https://api.dune.com/api` into the action secrets under `DUNE_API_BASE_URL` too. *The api key must be from a plus plan for this repo to work.*
 
 2. Then, go to the dashboard you want to create a repo for (must be owned by you/your team). Click on the "github" button in the top right of your dashboard to see the query ids.
 
-3. Copy and paste that list into the `queries.yml` file inside the `/queries` folder. You can paste any list of query ids, doesn't have to be linked to a dashboard.
+3. Copy and paste that list into the `queries.yml` file. You can paste any list of query ids, it doesn't have to be linked to a dashboard.
 
 4. Then, run `pull_from_dune.py` to bring in all queries into `/query_{id}.sql` files within the `/queries` folder. Directions to setup and run this script are below.
 
-5. Make any changes you need to directly in the repo. Any time you push a commit to MAIN branch, `push_to_dune.py` will save your changes into Dune directly.
+### Updating Queries or CSV Tables
+
+1. Make any changes you need to directly in the repo. Any time you push a commit to MAIN branch, `push_to_dune.py` will save your changes into Dune directly. You can run this manually too if you want.
+
+2. For CSVs, update the files in the `/uploads` folder. `upload_to_dune.py` will run on commit, or can be run manually. The table name in Dune will be `dune.team_name.dataset_<filename>`.
 
 ---
 
@@ -24,11 +28,12 @@ You'll need python and pip installed to run the script commands. If you don't ha
 pip install -r requirements.txt
 ```
 
-| Script | Action | Command |
-|---|---|---|
-| `pull_from_dune.py` | updates/adds queries to your repo based on ids in `queries.yml` | `python scripts/pull_from_dune.py` |
-| `push_to_dune.py` | updates queries to Dune based on files in your `/queries` folder | `python scripts/push_to_dune.py` |
-| `preview_query.py` | gives you the first 20 rows of results by running a query from your `/queries` folder. Specify the id. | `python scripts/preview_query.py 2615782` |
+| Script | Action                                                                                                                                                    | Command |
+|---|-----------------------------------------------------------------------------------------------------------------------------------------------------------|---|
+| `pull_from_dune.py` | updates/adds queries to your repo based on ids in `queries.yml`                                                                                           | `python scripts/pull_from_dune.py` |
+| `push_to_dune.py` | updates queries to Dune based on files in your `/queries` folder                                                                                          | `python scripts/push_to_dune.py` |
+| `preview_query.py` | gives you the first 20 rows of results by running a query from your `/queries` folder. Specify the id. This uses Dune API credits | `python scripts/preview_query.py 2615782` |
+| `upload_to_dune.py` | uploads/updates any tables from your `/uploads` folder. Must be in CSV format, and under 200MB. | `python scripts/upload_to_dune.py` |
 
 ---
 
