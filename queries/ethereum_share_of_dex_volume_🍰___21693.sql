@@ -2,15 +2,6 @@
 -- query name: Ethereum share of DEX volume 🍰
 -- query link: https://dune.com/queries/21693
 
-
-/* Migration success :)
-
-There are some cases such as unnest/sequence and array/json functions the migrator won't take care of for you 
-(but we have examples of in the docs linked below!)
-
-If you're still running into issues, check out the doc examples https://dune.com/docs/reference/dune-v2/query-engine/
-or reach out to us in the Dune discord in the #dune-sql channel. 
- */
 WITH
   eth AS (
     SELECT
