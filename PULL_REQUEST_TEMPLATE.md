@@ -10,8 +10,6 @@ If so, link that issue(s) here.
 
 **Provide any other context or screenshots that explain or justify the changes above:**
 
-"`tx_from` may not be the most accurate, we might want to use `tx_to` instead since that identifies the MEV contract being utilized. But this requires further digging"
-
 ---
 
 **Note to Contributor:**
