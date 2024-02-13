@@ -2,6 +2,8 @@
 
 This repo is for managing queries and discussions around the [Dune DEX Metrics](https://dune.com/hagaetc/dex-metrics) dashboard.
 
+>*This repo was created [using this template](https://github.com/duneanalytics/DuneQueryRepo), made to [manage your Dune queries](https://dune.mintlify.app/api-reference/crud/endpoint/create) and any [CSVs as Dune tables](https://dune.mintlify.app/api-reference/upload/endpoint/upload).*
+
 ### For Contributors
 
 I've set up four types of issues right now:
