@@ -16,7 +16,7 @@ If you want to contribute, either start an issue or go directly into making a PR
 
 ### Query Management Scripts
 
-You'll need python and pip installed to run the script commands. If you don't have a package manager set up, then use either [conda](https://www.anaconda.com/download) or [poetry](https://python-poetry.org/) . Then install the required packages:
+You'll need python and pip installed to run the script commands. If you don't have a package manager set up, then use either [anaconda](https://www.anaconda.com/download) or [poetry](https://python-poetry.org/) . Then install the required packages:
 
 ```
 pip install -r requirements.txt
